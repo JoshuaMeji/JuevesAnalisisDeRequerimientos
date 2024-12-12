@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('formulas.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+        }
+        .tab-container {
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            max-width: 900px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .tab-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .tab-button {
+            padding: 10px 20px;
+            border: none;
+            background: #f1f1f1;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .tab-button.active {
+            background: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #f1f1f1;
+        }
+    </style>
+</head>
+<body ng-app="InventarioApp" ng-controller="InventarioCtrl">
+    <div class="tab-container">
+        <input type="text" ng-model="searchQuery" placeholder="Buscar..." class="form-control">
+
+        <div class="tab-buttons">
+            <button class="tab-button" ng-class="{'active': activeTab === 'formulas'}" ng-click="setActiveTab('formulas')">Fórmulas</button>
+            <button class="tab-button" ng-class="{'active': activeTab === 'aprobadas'}" ng-click="setActiveTab('aprobadas')">Aprobadas</button>
+            <button class="tab-button" ng-class="{'active': activeTab === 'rechazadas'}" ng-click="setActiveTab('rechazadas')">Rechazadas</button>
+            <button class="tab-button" ng-class="{'active': activeTab === 'porProbar'}" ng-click="setActiveTab('porProbar')">Por Probar</button>
+        </div>
+
+        <div class="tab-content" ng-class="{'active': activeTab === 'formulas'}">
+            <h3>Fórmulas</h3>
+            <table>
+                <tr>
+                    <th>Referencia</th>
+                    <th>Descripción</th>
+                </tr>
+                <tr ng-repeat="item in data.formulas | filter:searchQuery">
+                    <td>{{item.ref}}</td>
+                    <td>{{item.desc}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="tab-content" ng-class="{'active': activeTab === 'aprobadas'}">
+            <h3>Fórmulas Aprobadas</h3>
+            <table>
+                <tr>
+                    <th>Referencia</th>
+                    <th>Descripción</th>
+                </tr>
+                <tr ng-repeat="item in data.aprobadas | filter:searchQuery">
+                    <td>{{item.ref}}</td>
+                    <td>{{item.desc}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="tab-content" ng-class="{'active': activeTab === 'rechazadas'}">
+            <h3>Fórmulas Rechazadas</h3>
+            <table>
+                <tr>
+                    <th>Referencia</th>
+                    <th>Descripción</th>
+                </tr>
+                <tr ng-repeat="item in data.rechazadas | filter:searchQuery">
+                    <td>{{item.ref}}</td>
+                    <td>{{item.desc}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="tab-content" ng-class="{'active': activeTab === 'porProbar'}">
+            <h3>Fórmulas por Probar</h3>
+            <table>
+                <tr>
+                    <th>Referencia</th>
+                    <th>Descripción</th>
+                </tr>
+                <tr ng-repeat="item in data.porProbar | filter:searchQuery">
+                    <td>{{item.ref}}</td>
+                    <td>{{item.desc}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            angular.module('InventarioApp', [])
+                .controller('InventarioCtrl', ['$scope', function($scope) {
+                    $scope.activeTab = 'formulas';
+
+                    $scope.setActiveTab = function(tab) {
+                        $scope.activeTab = tab;
+                    };
+
+                    $scope.data = {
+                        formulas: [
+                            {ref: 'F001', desc: 'Fórmula para producto 1'},
+                            {ref: 'F002', desc: 'Fórmula para producto 2'},
+                            {ref: 'F003', desc: 'Fórmula para producto 3'}
+                        ],
+                        aprobadas: [
+                            {ref: 'A001', desc: 'Fórmula para producto 1 aprobada'},
+                            {ref: 'A002', desc: 'Fórmula para producto 2 aprobada'}
+                        ],
+                        rechazadas: [
+                            {ref: 'R001', desc: 'Fórmula para producto 1 rechazada'},
+                            {ref: 'R002', desc: 'Fórmula para producto 2 rechazada'}
+                        ],
+                        porProbar: [
+                            {ref: 'P001', desc: 'Fórmula para producto 1'},
+                            {ref: 'P002', desc: 'Fórmula para producto 2'}
+                        ]
+                    };
+                }]);
+        })();
+    </script>
+</body>
+</html>

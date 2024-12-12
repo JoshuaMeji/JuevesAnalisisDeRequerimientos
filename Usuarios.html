@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('Fondo.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+        }
+        .tab-container {
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            max-width: 900px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .tab-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .tab-button {
+            padding: 10px 20px;
+            border: none;
+            background: #f1f1f1;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .tab-button.active {
+            background: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #f1f1f1;
+        }
+    </style>
+</head>
+<body ng-app="UsuariosApp" ng-controller="UsuariosCtrl">
+    <div class="tab-container">
+        <input type="text" ng-model="searchQuery" placeholder="Buscar..." class="form-control">
+
+        <div class="tab-buttons">
+            <button class="tab-button" ng-class="{'active': activeTab === 'usuarios'}" ng-click="setActiveTab('usuarios')">Usuarios</button>
+            <button class="tab-button" ng-class="{'active': activeTab === 'roles'}" ng-click="setActiveTab('roles')">Roles</button>
+        </div>
+
+        <!--Usuarios -->
+        <div class="tab-content" ng-class="{'active': activeTab === 'usuarios'}">
+            <h3>Usuarios</h3>
+            <table>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Rol</th>
+                </tr>
+                <tr ng-repeat="user in data.usuarios | filter:searchQuery">
+                    <td>{{user.nombre}}</td>
+                    <td>{{user.correo}}</td>
+                    <td>{{user.telefono}}</td>
+                    <td>{{user.rol}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <!--Roles -->
+        <div class="tab-content" ng-class="{'active': activeTab === 'roles'}">
+            <h3>Roles</h3>
+            <table>
+                <tr>
+                    <th>Rol</th>
+                    <th>Descripción</th>
+                </tr>
+                <tr ng-repeat="role in data.roles | filter:searchQuery">
+                    <td>{{role.nombre}}</td>
+                    <td>{{role.descripcion}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            angular.module('UsuariosApp', [])
+                .controller('UsuariosCtrl', ['$scope', function($scope) {
+                    $scope.activeTab = 'usuarios';
+
+                    $scope.setActiveTab = function(tab) {
+                        $scope.activeTab = tab;
+                    };
+
+                    $scope.data = {
+                        usuarios: [
+                            {nombre: 'Juan Pérez', correo: 'kzamora10173@ufide.ac.cr', telefono: '1234567890', rol: 'Administrador'},
+                            {nombre: 'Ana Gómez', correo: 'kzamora10173@ufide.ac.cr', telefono: '0987654321', rol: 'Usuario'},
+                            {nombre: 'Carlos López', correo: 'kzamora10173@ufide.ac.cr', telefono: '1122334455', rol: 'Químico'}
+                        ],
+                        roles: [
+                            {nombre: 'Administrador', descripcion: 'Todas las herramientas disponibles.'},
+                            {nombre: 'Usuario', descripcion: 'Visualización del contenido, más no edición.'},
+                            {nombre: 'Químico', descripcion: 'Visualización del contenido, edición del formulario'}
+                        ]
+                    };
+                }]);
+        })();
+    </script>
+</body>
+</html>

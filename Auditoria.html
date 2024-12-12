@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auditoría</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('Fondo2.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+        }
+        .tab-container {
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            max-width: 900px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .tab-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .tab-button {
+            padding: 10px 20px;
+            border: none;
+            background: #f1f1f1;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .tab-button.active {
+            background: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #f1f1f1;
+        }
+    </style>
+</head>
+<body ng-app="AuditoriaApp" ng-controller="AuditoriaCtrl">
+    <div class="tab-container">
+        <input type="text" ng-model="searchQuery" placeholder="Buscar..." class="form-control">
+
+        <div class="tab-buttons">
+            <button class="tab-button" ng-class="{'active': activeTab === 'inventario'}" ng-click="setActiveTab('inventario')">Reportes de Inventario</button>
+            <button class="tab-button" ng-class="{'active': activeTab === 'produccion'}" ng-click="setActiveTab('produccion')">Reportes de Producción</button>
+            <button class="tab-button" ng-class="{'active': activeTab === 'proveedores'}" ng-click="setActiveTab('proveedores')">Reportes de Proveedores</button>
+        </div>
+
+        <div class="tab-content" ng-class="{'active': activeTab === 'inventario'}">
+            <h3>Reportes de Inventario</h3>
+            <table>
+                <tr>
+                    <th>ID de Auditoría</th>
+                    <th>Acción Realizada</th>
+                    <th>Usuario</th>
+                    <th>Fecha y Hora</th>
+                </tr>
+                <tr ng-repeat="item in data.inventario | filter:searchQuery">
+                    <td>{{item.id}}</td>
+                    <td>{{item.accion}}</td>
+                    <td>{{item.usuario}}</td>
+                    <td>{{item.fecha}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="tab-content" ng-class="{'active': activeTab === 'produccion'}">
+            <h3>Reportes de Producción</h3>
+            <table>
+                <tr>
+                    <th>ID de Auditoría</th>
+                    <th>Configuración Modificada</th>
+                    <th>Usuario</th>
+                    <th>Fecha y Hora</th>
+                </tr>
+                <tr ng-repeat="item in data.produccion | filter:searchQuery">
+                    <td>{{item.id}}</td>
+                    <td>{{item.configuracion}}</td>
+                    <td>{{item.usuario}}</td>
+                    <td>{{item.fecha}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="tab-content" ng-class="{'active': activeTab === 'proveedores'}">
+            <h3>Reportes de Proveedores</h3>
+            <table>
+                <tr>
+                    <th>ID de Auditoría</th>
+                    <th>Elemento Modificado</th>
+                    <th>Usuario</th>
+                    <th>Fecha y Hora</th>
+                </tr>
+                <tr ng-repeat="item in data.proveedores | filter:searchQuery">
+                    <td>{{item.id}}</td>
+                    <td>{{item.elemento}}</td>
+                    <td>{{item.usuario}}</td>
+                    <td>{{item.fecha}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            angular.module('AuditoriaApp', [])
+                .controller('AuditoriaCtrl', ['$scope', function($scope) {
+                    $scope.activeTab = 'inventario';
+
+                    $scope.setActiveTab = function(tab) {
+                        $scope.activeTab = tab;
+                    };
+
+                    $scope.data = {
+                        inventario: [
+                            {id: 'I001', accion: 'Reporte Mensual', usuario: 'Kevin', fecha: '2024-12-01 10:30'},
+                            {id: 'I002', accion: 'Reporte Semanal', usuario: 'Joshua', fecha: '2024-12-01 11:00'}
+                        ],
+                        produccion: [
+                            {id: 'P001', configuracion: 'Reporte mensual de producción', usuario: 'Sebastian', fecha: '2024-12-01 09:00'}
+                        ],
+                        proveedores: [
+                            {id: 'PR001', elemento: 'Reporte de provedor X Mensual', usuario: 'Laura', fecha: '2024-12-01 08:45'}
+                        ]
+                    };
+                }]);
+        })();
+    </script>
+</body>
+</html>
