@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorios Fide</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('FondoMenu.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .container {
+            text-align: center;
+            color: #003366;
+            margin-top: 20px;
+        }
+
+        .container h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .button {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+        }
+
+        .button img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+        }
+
+        .button span {
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 210px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .submenu a {
+            display: block;
+            margin: 5px 0;
+            text-decoration: none;
+            color: #003366;
+        }
+
+        .submenu a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>BIENVENIDO A</h1>
+        <img src="logo_02.png">
+        <div class="button-container">
+            <div class="button" onclick="toggleSubMenu('materiaPrimaMenu')">
+                <img src="Inventario.jpg" alt="Materia Prima">
+                <span>Inventario Materia Prima</span>
+                <div class="submenu" id="materiaPrimaMenu">
+                    <a href="#">En Perfecto Estado</a>
+                    <a href="#">Caducada</a>
+                    <a href="#">Por caducar</a>
+                </div>
+            </div>
+
+            <div class="button" onclick="toggleSubMenu('productosMenu')">
+                <img src="Productos.jpeg" alt="Productos">
+                <span>Inventario Productos</span>
+                <div class="submenu" id="productosMenu">
+                    <a href="#">Producto 1</a>
+                    <a href="#">Producto 2</a>
+                    <a href="#">Producto 3</a>
+                </div>
+            </div>
+
+            <div class="button" onclick="toggleSubMenu('formulasMenu')">
+                <img src="Formulas.jpg" alt="Fórmulas">
+                <span>Fórmulas</span>
+                <div class="submenu" id="formulasMenu">
+                    <a href="#">Fórmula 1</a>
+                    <a href="#">Fórmula 2</a>
+                    <a href="#">Fórmula 3</a>
+                </div>
+            </div>
+
+            <div class="button" onclick="toggleSubMenu('departamentosMenu')">
+                <img src="Departamentos.jpg" alt="Departamentos">
+                <span>Departamentos</span>
+                <div class="submenu" id="departamentosMenu">
+                    <a href="#">Departamento 1</a>
+                    <a href="#">Departamento 2</a>
+                    <a href="#">Departamento 3</a>
+                </div>
+            </div>
+
+            <div class="button" onclick="toggleSubMenu('exportacionesMenu')">
+                <img src="Imp&Exp.jpg" alt="Exportaciones">
+                <span>Exportaciones e Importaciones</span>
+                <div class="submenu" id="exportacionesMenu">
+                    <a href="#">Exportación 1</a>
+                    <a href="#">Importación 1</a>
+                    <a href="#">Exportación 2</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSubMenu(menuId) {
+            const submenu = document.getElementById(menuId);
+            const isVisible = submenu.style.display === 'block';
+            document.querySelectorAll('.submenu').forEach(menu => menu.style.display = 'none');
+            submenu.style.display = isVisible ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>
