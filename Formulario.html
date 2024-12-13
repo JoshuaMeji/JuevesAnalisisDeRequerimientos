@@ -59,6 +59,19 @@
         th {
             background: #f1f1f1;
         }
+         /* Estilo para el botón de regreso */
+         .btn-back {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .btn-back:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body ng-app="InventarioApp" ng-controller="InventarioCtrl">
@@ -161,5 +174,10 @@
                 }]);
         })();
     </script>
+    </div>
+    <!-- Botón de regreso -->
+    <a href="Menu.html" class="btn-back">
+     <alt="Logo"> Regresar
+   </a>
 </body>
 </html>

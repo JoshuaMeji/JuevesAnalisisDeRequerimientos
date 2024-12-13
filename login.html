@@ -5,9 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de Login</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        // Función para redirigir al menú cuando se envíe el formulario
+        function redirectToMenu(event) {
+            event.preventDefault(); // Evitar el envío del formulario
+            window.location.href = "Menu.html"; // Redirigir a Menu.html
+        }
+    </script>
 </head>
 <body>
-    <form class="login-form">
+    <form class="login-form" onsubmit="redirectToMenu(event)">
         <p class="login-text">
           <span class="fa-stack fa-lg">
             <i class="fa fa-circle fa-stack-2x"></i>
@@ -17,9 +24,9 @@
         <input type="email" class="login-username" autofocus="true" required="true" placeholder="Email" />
         <input type="password" class="login-password" required="true" placeholder="Password" />
         <input type="submit" name="Login" value="Login" class="login-submit" />
-      </form>
-      <a href="#" class="login-forgot-pass">forgot password?</a>
-      <div class="underlay-photo"></div>
-      <div class="underlay-black"></div>
+    </form>
+    <a href="#" class="login-forgot-pass">forgot password?</a>
+    <div class="underlay-photo"></div>
+    <div class="underlay-black"></div>
 </body>
 </html>

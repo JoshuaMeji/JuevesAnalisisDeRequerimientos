@@ -59,9 +59,27 @@
         th {
             background: #f1f1f1;
         }
+
+        /* Estilos para el botón de regreso */
+        .btn-back {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        .btn-back:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body ng-app="AuditoriaApp" ng-controller="AuditoriaCtrl">
+
+    
+
     <div class="tab-container">
         <input type="text" ng-model="searchQuery" placeholder="Buscar..." class="form-control">
 
@@ -151,5 +169,7 @@
                 }]);
         })();
     </script>
+<!-- Botón de regreso -->
+<a href="Menu.html" class="btn-back">Regresar</a>
 </body>
 </html>
