@@ -40,7 +40,24 @@
       background-color: rgba(255, 255, 255, 0.9);
       border-radius: 10px;
     }
+/* Estilo para el botón de regreso */
+.btn-back {
+      display: inline-block;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 16px;
+      margin-top: 20px;
+    }
 
+    .btn-back img {
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
     .controles {
       background-color: lightblue;
       height: 3em;
@@ -145,25 +162,6 @@
       color: blue;
       cursor: pointer;
     }
-
-    /* Estilo para el botón de regreso */
-    .btn-back {
-      display: inline-block;
-      background-color: #4CAF50;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 5px;
-      text-decoration: none;
-      font-size: 16px;
-      margin-top: 20px;
-    }
-
-    .btn-back img {
-      width: 20px;
-      height: 20px;
-      vertical-align: middle;
-      margin-right: 10px;
-    }
   </style>
   <script>
     (function() {
@@ -176,13 +174,31 @@
         $log.debug('Iniciando InventarioCtrl');
         $scope.valorTest = 'UNO';
 
-      
+        // Actualización de las categorías con los datos proporcionados
         $scope.items = {};
         $scope.items.categoriaA = [];
-        $scope.items.categoriaA.push({ref: 'REF00001', desc: 'Objeto 1, cosa verde rara', img: 'https://4.bp.blogspot.com/-uEaH48GhjOs/Vji7GepdR4I/AAAAAAAADPQ/SGQ_36W8CZw/s1600/propiedades%2Bboniato%2B%25282%2529.jpg'});  
-        // Resto de categorías...
+        $scope.items.categoriaA.push({ref: 'REF00001', desc: 'Objeto 1, cosa verde rara', img: 'https://4.bp.blogspot.com/-uEaH48GhjOs/Vji7GepdR4I/AAAAAAAADPQ/SGQ_36W8CZw/s1600/propiedades%2Bboniato%2B%25282%2529.jpg'});
+        $scope.items.categoriaA.push({ref: 'REF00002', desc: 'Objeto 2, cosa roja rara', img: 'https://4.bp.blogspot.com/-uEaH48GhjOs/Vji7GepdR4I/AAAAAAAADPQ/SGQ_36W8CZw/s1600/propiedades%2Bboniato%2B%25282%2529.jpg'});
+        $scope.items.categoriaA.push({ref: 'REF00003', desc: 'Objeto 3, cosa verde rara Objeto 3, cosa verde rara Objeto 3, cosa verde rara Objeto 3, cosa verde rara', img: 'https://4.bp.blogspot.com/-uEaH48GhjOs/Vji7GepdR4I/AAAAAAAADPQ/SGQ_36W8CZw/s1600/propiedades%2Bboniato%2B%25282%2529.jpg'});
+        $scope.items.categoriaA.push({ref: 'REF00004', desc: 'Objeto 4, cosa verde rara', img: 'https://4.bp.blogspot.com/-uEaH48GhjOs/Vji7GepdR4I/AAAAAAAADPQ/SGQ_36W8CZw/s1600/propiedades%2Bboniato%2B%25282%2529.jpg'});
+        $scope.items.categoriaA.push({ref: 'REF00005', desc: 'Objeto 5, cosa verde rara', img: 'https://4.bp.blogspot.com/-uEaH48GhjOs/Vji7GepdR4I/AAAAAAAADPQ/SGQ_36W8CZw/s1600/propiedades%2Bboniato%2B%25282%2529.jpg'});
+        $scope.items.categoriaA.push({ref: 'REF00006', desc: 'Objeto 6, cosa verde rara', img: 'https://4.bp.blogspot.com/-uEaH48GhjOs/Vji7GepdR4I/AAAAAAAADPQ/SGQ_36W8CZw/s1600/propiedades%2Bboniato%2B%25282%2529.jpg'});
 
-        
+        $scope.items.categoriaB = [];
+        $scope.items.categoriaB.push({ref: 'REF10001', desc: 'Cosa 1, cosa rara', img: 'http://blog.casapia.com/wp-content/uploads/2015/10/img_05031.jpg'});
+        $scope.items.categoriaB.push({ref: 'REF10002', desc: 'Cosa 2, cosa rara', img: 'http://blog.casapia.com/wp-content/uploads/2015/10/img_05031.jpg'});
+        $scope.items.categoriaB.push({ref: 'REF10003', desc: 'Cosa 3, cosa rara', img: 'http://blog.casapia.com/wp-content/uploads/2015/10/img_05031.jpg'});
+        $scope.items.categoriaB.push({ref: 'REF10004', desc: 'Cosa 4, cosa rara', img: 'http://blog.casapia.com/wp-content/uploads/2015/10/img_05031.jpg'});
+        $scope.items.categoriaB.push({ref: 'REF10005', desc: 'Cosa 5, cosa rara', img: 'http://blog.casapia.com/wp-content/uploads/2015/10/img_05031.jpg'});
+
+        $scope.items.categoriaC = [];
+        $scope.items.categoriaC.push({ref: 'REF20001', desc: 'Esto es un 1', img: 'http://adelgazarmasrapido.com/wp-content/uploads/2014/08/Boniato-para-perder-peso.png'});
+        $scope.items.categoriaC.push({ref: 'REF20002', desc: 'Esto es un 2', img: 'http://adelgazarmasrapido.com/wp-content/uploads/2014/08/Boniato-para-perder-peso.png'});
+        $scope.items.categoriaC.push({ref: 'REF20003', desc: 'Esto es un 3', img: 'http://adelgazarmasrapido.com/wp-content/uploads/2014/08/Boniato-para-perder-peso.png'});
+        $scope.items.categoriaC.push({ref: 'REF20004', desc: 'Esto es un 4', img: 'http://adelgazarmasrapido.com/wp-content/uploads/2014/08/Boniato-para-perder-peso.png'});
+        $scope.items.categoriaC.push({ref: 'REF20005', desc: 'Esto es un 5', img: 'http://adelgazarmasrapido.com/wp-content/uploads/2014/08/Boniato-para-perder-peso.png'});
+
+        // Generación de categorías
         $scope.listaCategorias = Object.keys($scope.items);
         $scope.categoria = $scope.listaCategorias[0];
         $scope.actualizaCategoria = function() {
@@ -231,14 +247,12 @@
         </td>
       </tr>
     </table>
-
-   
-
   </div>
-   <!-- Botón de regreso -->
-   <a href="Menu.html" class="btn-back">
-    <alt="Logo"> Regresar
-  </a>
+</div>
+<!-- Botón de regreso -->
+<a href="Menu.html" class="btn-back">
+ <alt="Logo"> Regresar
+</a>
 </body>
 
 </html>
